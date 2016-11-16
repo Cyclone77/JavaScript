@@ -20,6 +20,7 @@
 
 >Storage.clear()<br>
 调用该方法会清空存储中的所有键名。
+
 ## 用法
 ``` javascript
 	Store("session").set("Item", "value");
