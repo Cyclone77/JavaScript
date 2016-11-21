@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>defineProperty 双向绑定</title>
+</head>
+
+<body>
+    <input type="text" id="putText" value="">
+    <span id="spanText"></span>
+    <script>
+        //Object.defineProperty();
+
+        var data = {
+            _hello: ""
+        };
+        Object.defineProperty(data, "hello", {
+            get: function() {
+                console.log(this.hello);
+            },
+            set: function(newVal) {
+                document.getElementById("spanText").innerHTML = newVal;
+                document.getElementById("putText").value = newVal;
+                this.hello = this.hello != newVal: newVal: this.hello;
+            }
+        })
+
+        document.addEventListener("keyup", function(e) {
+            data.hello = e.target.value || "";
+        }, false);
+    </script>
+</body>
+
+</html>
