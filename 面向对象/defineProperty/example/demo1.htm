@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+   <h2>实现监听一个对象的属性（包括子属性）</h2>
+    <script>
+        var data = {
+            name: "张三",
+            age: 19,
+            sex: "男"
+        };
+
+        function observe(data) {
+            if (!data || Object.prototype.toString.call(data) != "[object Object]") return;
+            
+            Object.keys(data).forEach(function(v, i) {
+                defineReactive(data, v, data[v])
+            });
+        }
+        
+        function defineReactive(obj, name, val){
+            observe(val); // 监听子属性
+            Object.defineProperty(obj,name,{
+                enumerable: true,
+                get: function(){
+                    return val;
+                },
+                set: function(newVal){
+                    console.log('监听到值变化了 ', val, ' --> ', newVal);
+                    val = newVal;
+                }
+            })
+        }
+        
+        observe(data);
+    </script>
+</body>
+
+</html>
