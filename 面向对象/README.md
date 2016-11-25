@@ -18,3 +18,6 @@ new Object([value])
 对象构造函数为给定值创建一个对象包装器。。如果给定值是  null or undefined，将会创建并返回一个空对象，否则，将返回一个与给定值对应类型的对象。
 
 当以非构造函数形式被调用时，Object 等同于 new Object()。
+
+- var arr = new Array(); //等价于var arr = new Array; 或者 var arr = []; 
+- var obj = new Object(); //等价于var obj = new Object; 或者 var obj = {}; 

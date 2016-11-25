@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function Person() {}
+        Person.prototype.name = "Nicholas";
+        Person.prototype.age = 29;
+        Person.prototype.job = "Software Engineer";
+        Person.prototype.sayName = function() {
+            alert(this.name);
+        };
+        var person1 = new Person();
+        var person2 = new Person();
+        person1.name = "Greg";
+        console.log(person1.name);
+        console.log(person2.name);
+        
+        delete person1.name;
+        console.log("删除person1自己添加的name属性后："+person1.name);
+    </script>
+</body>
+
+</html>

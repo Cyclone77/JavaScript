@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function Person() {}
+        Person.prototype = {
+            name: "Nicholas",
+            age: 29,
+            job: "Software Engineer",
+            sayName: function() {
+                alert(this.name);
+            }
+        };
+
+        //重设构造函数，只适用于 ECMAScript 5 兼容的浏览器
+        Object.defineProperty(Person.prototype, "constructor", {
+            enumerable: false,
+            value: Person
+        });
+    </script>
+</body>
+
+</html>

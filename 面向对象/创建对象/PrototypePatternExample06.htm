@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var o = {
+            toString: function() {
+                return "My Object";
+            }
+        };
+        for (var prop in o) {
+            if (prop == "toString") {
+                alert("Found toString"); //在 IE 中不会显示
+            }
+        }
+    </script>
+</body>
+
+</html>

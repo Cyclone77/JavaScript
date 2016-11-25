@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function Person() {}
+        Person.prototype = {
+            constructor: Person,
+            name: "Nicholas",
+            age: 29,
+            job: "Software Engineer",
+            sayName: function() {
+                alert(this.name);
+            }
+        };
+        var friend = new Person();
+        Person.prototype.sayHi = function() {
+            alert("hi");
+        };
+        friend.sayHi(); //"hi"（没有问题！）
+
+        var friendNew = new Person();
+        Person.prototype = {
+            constructor: Person,
+            name: "Nicholas1",
+            age: 30,
+            job: "Software Engineer",
+            sayName: function() {
+                alert(this.name);
+            }
+        };
+        friendNew.sayName(); //error
+    </script>
+</body>
+
+</html>
