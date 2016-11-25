@@ -64,3 +64,35 @@ Person.prototype = {
 对象的 constructor 属性 （指向 Object 构造函数），不再指向 Person 函数。
 
 - 实例一般都是要有属于自己的全部属性的。
+
+### 改变原型对象
+
+>调用构造函数时会为实例添加一个指向最初原型的
+[[Prototype]]指针，而把原型修改为另外一个对象就等于切断了构造函数与最初原型之间的联系。
+
+- 实例中的指针仅指向原型，而不指向构造函数
+
+``` javascript
+function Person() {}
+Person.prototype = {
+    sex: "男"
+};
+var friend = new Person();
+Person.prototype = {
+    constructor: Person,
+    name: "Nicholas",
+    age: 29,
+    job: "Software Engineer",
+    sayName: function() {
+        alert(this.name);
+    }
+};
+console.log(friend.sex === "男"); //true
+friend.sayName(); //error
+```
+<p align="center">
+  <img alt="原型指针" src="prototypeNew.png">
+</p>
+
+> **重写原型对象切断了现有原型与任何之前已经存在的对象实例之间的联系；它
+们引用的仍然是最初的原型。**
