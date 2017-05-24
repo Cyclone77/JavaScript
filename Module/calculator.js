@@ -7,4 +7,4 @@ namespace('calculator', ['math'], function(m) {
     return {
         compute: compute
     }
-})
+});
