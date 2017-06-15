@@ -96,4 +96,13 @@ var obj1 = new MyObject();
 var obj2 = new MyObject()
 
 console.log(obj1.doFunc == obj2.doFunc);
-console.log(obj1.doFunc.toString())
+console.log(obj1.doFunc.toString());
+
+
+function test1() {
+    console.log("test1");
+}
+
+var test2 = test1;
+test1 = null;
+console.log(test2 === test1);

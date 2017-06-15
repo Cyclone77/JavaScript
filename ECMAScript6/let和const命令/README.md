@@ -55,4 +55,16 @@ function f() {
 
 f(); // undefined
 ```
+### ES6 的块级作用域 
 
+let实际上为 JavaScript 新增了块级作用域。
+
+``` javascript
+function f1() {
+  let n = 5;
+  if (true) {
+    let n = 10;
+  }
+  console.log(n); // 5
+}
+```

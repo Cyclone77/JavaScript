@@ -54,6 +54,60 @@ var tmp = 123;
 if (true) {
     tmp = 'abc'; // ReferenceError
     //let tmp;
+    let a = "abs";
+    this;
 }
 
 console.log(tmp);
+
+
+function f1() {
+    let n = 5;
+    this;
+    if (true) {
+        let n = 10;
+    }
+    console.log(n); // 5
+}
+f1();
+
+// ES5 环境
+function f() { console.log('I am outside!'); }
+
+(function() {
+    function f() { console.log('I am inside!'); }
+    if (false) {}
+    f();
+}());
+
+'use strict';
+// 浏览器的 ES6 环境
+function f() { console.log('I am outside!'); }
+
+(function() {
+    if (false) {
+        // 重复声明一次函数f
+        function f() { console.log('I am inside!'); }
+    }
+
+    f();
+}());
+
+// 不报错
+'use strict';
+if (true) {
+    function f() {}
+}
+
+// 报错
+//'use strict';
+//if (true)
+//function f() {}
+
+
+
+const PI = 3.1415;
+PI // 3.1415
+
+//PI = 3;
+// TypeError: Assignment to constant variable.
