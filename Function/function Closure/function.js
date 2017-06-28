@@ -44,4 +44,11 @@ function env() {
     echo();
 }
 
+var fun1 = function() {
+    var fun2 = function() {
+        console.log("闭包")
+    }
+    fun2();
+}
+fun1()
 env();

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="message" data_id="123"></div>
+
+    <script src="../jquery.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var msg = document.getElementById("message");
+            msg.SelectID = "02";
+            var $msg = $(msg);
+
+            console.log($msg.attr("class")); // test
+            $msg.prop("className", "newTest");
+            // 修改className(property)导致class(attitude)也随之更改
+            console.log($msg.attr("class")); // newTest
+            $msg.attr("SelectID", "01");
+            console.log($msg.attr("SelectID"));
+            console.log($msg.prop("SelectID"));
+        })
+    </script>
+
+
+</body>
+
+</html>
