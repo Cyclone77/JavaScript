@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function myFunc() {
+            if (myFunc.caller == null) {
+                console.log("该函数在全局作用域内被调用!");
+            } else
+                console.log("调用我的是函数是" + myFunc.caller);
+        }
+
+        function whoCalled() {
+            if (arguments.caller == null)
+                console.log('该函数在全局作用域内被调用.');
+            else
+                console.log(arguments.caller + '调用了我!');
+        }
+
+        function load() {
+            myFunc();
+            whoCalled();
+            console.log(load.name);
+        }
+        load();
+    </script>
+</body>
+
+</html>
