@@ -7,14 +7,11 @@
         "type": "node",
         "request": "launch",
         "runtimeArgs": [
-            "--debug",
             "--nolazy"
         ],
         //"trace": "all",
-        "stopOnEntry": true,
         "name": "JavaScript Debug",
         "program": "${file}",
-        "cwd": "${workspaceRoot}",
         "console": "internalConsole"
     }]
 }

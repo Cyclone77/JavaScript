@@ -69,8 +69,12 @@
     <p>Some text</p>
     <div class="testClass">dolor sit amet</div>
 
+    <div class="test">dolor sit amet</div>
+
     <script type="text/javascript">
-        domQuery('.testClass').attributes('lang', 'en')('title', 'Risus abundat in ore stultorum')
+        var xx = domQuery('.testClass').attributes('lang', 'en')('title', 'Risus abundat in ore stultorum')
+            .inlineStyle('background-color', 'black')('color', 'white')('width', '100px')('height', '50px');
+        var yy = domQuery('.test').attributes('lang', 'en')('title', 'Risus abundat in ore stultorum')
             .inlineStyle('background-color', 'black')('color', 'white')('width', '100px')('height', '50px');
     </script>
 </body>
