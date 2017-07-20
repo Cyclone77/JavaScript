@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="github-markdown.css">
+    <link rel="stylesheet" href="src/styles/monokai-sublime.css">
+    <script src="marked.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/1.9.1/jquery.js"></script>
+    <script src="http://cdn.bootcss.com/highlight.js/8.0/highlight.min.js"></script>
+    <style>
+        .hljs {
+            padding: 5px 20px;
+        }
+        
+        code {
+            font-family: Lucida Console, Monaco, Courier New, mono, monospace;
+            font-size: 14px;
+        }
+        
+        .markdown-body .highlight pre,
+        .markdown-body pre {
+            background-color: #23241f;
+            color: #f8f8f2;
+        }
+        
+        .markdown-body blockquote {
+            border-left-width: 10px;
+            background-color: rgba(102, 128, 153, 0.05);
+            border-top-right-radius: 5px;
+            border-bottom-right-radius: 5px;
+            padding: 15px 20px;
+        }
+    </style>
+    <script type="text/javascript">
+        //替换为span \t
+        hljs.tabReplace = '<span class="indent">\t</span>';
+        hljs.initHighlightingOnLoad();
+    </script>
+</head>
+
+<body>
+    <pre>
+        <code class="javascript">
+window.onload = function() {
+    var xmlhttp;
+    if (window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp = new XMLHttpRequest();
+    } else { // code for IE6, IE5
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xmlhttp.onreadystatechange = function() {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            var res = JSON.parse(xmlhttp.responseText);
+            
+            console.log(res);
+        }
+    }
+    xmlhttp.open("GET", "https://api.github.com/repos/Cyclone77/Cyclone77-Blog/issues", true);
+    xmlhttp.send();
+}
+        </code>
+    </pre>
+    <ul id="divPageContent"></ul>
+    <script>
+        window.onload = function() {
+            var xmlhttp;
+            if (window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari
+                xmlhttp = new XMLHttpRequest();
+            } else { // code for IE6, IE5
+                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            xmlhttp.onreadystatechange = function() {
+                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                    var res = JSON.parse(xmlhttp.responseText);
+                    var content = document.getElementById("divPageContent");
+                    var arr = [];
+                    res.forEach(function(item) {
+                        var liCon = marked(item.body);
+                        var html = "<li class='markdown-body'>" + liCon + "</li>";
+                        arr.push(html)
+                    })
+                    content.innerHTML = arr.join("");
+                    $('pre code').each(function(i, block) {
+                        var className = this.getAttribute("class");
+                        if (className.split("-").length > 1) this.setAttribute("class", className.split("-").pop());
+                        hljs.highlightBlock(block);
+                    });
+                    console.log(res);
+                }
+            }
+            xmlhttp.open("GET", "https://api.github.com/repos/Cyclone77/Cyclone77-Blog/issues", true);
+            xmlhttp.send();
+
+        }
+    </script>
+</body>
+
+</html>
