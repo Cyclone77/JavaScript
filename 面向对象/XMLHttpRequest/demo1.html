@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="github-markdown.css">
     <link rel="stylesheet" href="src/styles/monokai-sublime.css">
     <script src="marked.js"></script>
+    <script src="Store.js"></script>
     <script src="https://cdn.bootcss.com/jquery/1.9.1/jquery.js"></script>
     <script src="http://cdn.bootcss.com/highlight.js/8.0/highlight.min.js"></script>
     <style>
@@ -66,7 +67,7 @@ window.onload = function() {
     </pre>
     <ul id="divPageContent"></ul>
     <script>
-        window.onload = function() {
+        var onload1 = function() {
             var xmlhttp;
             if (window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari
                 xmlhttp = new XMLHttpRequest();
@@ -94,7 +95,55 @@ window.onload = function() {
             }
             xmlhttp.open("GET", "https://api.github.com/repos/Cyclone77/Cyclone77-Blog/issues", true);
             xmlhttp.send();
+        }
 
+        function load() {
+            $.ajax({
+                url: "https://api.github.com/repos/Cyclone77/jQuery-cyScroll/issues",
+                data: {
+                    filter: 'created',
+                    page: 1,
+                    per_page: 2
+                },
+                crossDomain: true,
+                xhrFields: {
+                    withCredentials: true
+                },
+                //contentType: "application/x-www-form-urlencoded, multipart/form-data",
+                type: "GET",
+                dataType: "jsonp",
+                success: function(data, textStatus, jqXHR) {
+                    //Store("local").set("Cyclone77-GitHub-Blog", JSON.stringify(data.data || data));
+                    bulidHtml(data.data || data);
+                },
+                error: function() {
+
+                }
+            });
+        }
+        window.onload = function() {
+            var data = Store("local").get("Cyclone77-GitHub-Blog");
+            if (data) {
+                bulidHtml(JSON.parse(data));
+            } else {
+                load();
+            }
+        };
+
+        function bulidHtml(res) {
+            var content = document.getElementById("divPageContent");
+            var arr = [];
+            res.forEach(function(item) {
+                var liCon = marked(item.body);
+                var html = "<li class='markdown-body'>" + liCon + "</li>";
+                arr.push(html)
+            });
+            content.innerHTML = arr.join("");
+            $('pre code').each(function(i, block) {
+                var className = this.getAttribute("class");
+                if (className.split("-").length > 1) this.setAttribute("class", className.split("-").pop());
+                hljs.highlightBlock(block);
+            });
         }
     </script>
 </body>
