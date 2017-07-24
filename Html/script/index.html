@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="container">
+        <div id="header"></div>
+        <div id="body">
+            <button id="only-button"> hello world</button>
+        </div>
+        <div id="footer"></div>
+    </div>
+    <script src="./js/loader02.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        Loader.load([
+            'https://cdn.bootcss.com/jquery/1.9.1/jquery.js',
+            './js/your.js',
+            './js/my.js'
+        ]);
+    </script>
+</body>
+
+</html>
