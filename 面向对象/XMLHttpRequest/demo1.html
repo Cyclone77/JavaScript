@@ -24,7 +24,7 @@
         
         .markdown-body .highlight pre,
         .markdown-body pre {
-            background-color: #23241f;
+            background-color: #3c3c3c;
             color: #f8f8f2;
         }
         
@@ -37,34 +37,11 @@
         }
     </style>
     <script type="text/javascript">
-        //替换为span \t
-        hljs.tabReplace = '<span class="indent">\t</span>';
         hljs.initHighlightingOnLoad();
     </script>
 </head>
 
 <body>
-    <pre>
-        <code class="javascript">
-window.onload = function() {
-    var xmlhttp;
-    if (window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari
-        xmlhttp = new XMLHttpRequest();
-    } else { // code for IE6, IE5
-        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-    }
-    xmlhttp.onreadystatechange = function() {
-        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-            var res = JSON.parse(xmlhttp.responseText);
-            
-            console.log(res);
-        }
-    }
-    xmlhttp.open("GET", "https://api.github.com/repos/Cyclone77/Cyclone77-Blog/issues", true);
-    xmlhttp.send();
-}
-        </code>
-    </pre>
     <ul id="divPageContent"></ul>
     <script>
         var onload1 = function() {
@@ -79,21 +56,29 @@ window.onload = function() {
                     var res = JSON.parse(xmlhttp.responseText);
                     var content = document.getElementById("divPageContent");
                     var arr = [];
+                    for (var i = 0, len = res.length; i < len; i++) {
+                        var liCon = marked(res[i].body);
+                        var html = "<li class='markdown-body'>" + liCon + "</li>";
+                        arr.push(html)
+                    }
+                    /*
                     res.forEach(function(item) {
                         var liCon = marked(item.body);
                         var html = "<li class='markdown-body'>" + liCon + "</li>";
                         arr.push(html)
                     })
-                    content.innerHTML = arr.join("");
                     $('pre code').each(function(i, block) {
                         var className = this.getAttribute("class");
                         if (className.split("-").length > 1) this.setAttribute("class", className.split("-").pop());
                         hljs.highlightBlock(block);
                     });
                     console.log(res);
+                    */
+
+                    content.innerHTML = arr.join("");
                 }
             }
-            xmlhttp.open("GET", "https://api.github.com/repos/Cyclone77/Cyclone77-Blog/issues", true);
+            xmlhttp.open("GET", "https://api.github.com/repos/Cyclone77/jQuery-cyScroll/issues", true);
             xmlhttp.send();
         }
 
@@ -122,6 +107,8 @@ window.onload = function() {
             });
         }
         window.onload = function() {
+            //onload1();
+
             var data = Store("local").get("Cyclone77-GitHub-Blog");
             if (data) {
                 bulidHtml(JSON.parse(data));
