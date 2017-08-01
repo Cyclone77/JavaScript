@@ -1,5 +1,6 @@
-define(function(require, exports, module) {
-
-    var a = require(['jquery']);
-
-});
+define(function() {
+    return {
+        color: "black",
+        size: "unisize"
+    }
+})

@@ -1,5 +1,8 @@
-define(function(require, exports, module) {
-
-    var b = require(['jquery']);
-
+define(function() {
+    function add(a, b) {
+        return a + b;
+    }
+    return {
+        add: add
+    }
 });
