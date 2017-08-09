@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>防抖动机制</title>
+</head>
+
+<body>
+
+    <input type="button" name="" id="" value="输出" onclick="consoleMsg();" />
+    <script src="debounce.js"></script>
+    <script>
+        var _debounce = debounce(function(time) {
+            console.log("2秒 防抖动- " + time);
+            console.log(new Date().toString());
+        }, 2000);
+
+        function consoleMsg() {
+            console.log(new Date().toString());
+            _debounce(new Date().toString());
+        }
+    </script>
+
+</body>
+
+</html>
