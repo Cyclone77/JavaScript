@@ -10,17 +10,23 @@
 
 <body>
 
-    <input type="button" name="" id="" value="输出" onclick="consoleMsg();" />
+    <input type="button" name="" id="" value="输出1" onclick="consoleMsg1();" />
+    <input type="button" name="" id="" value="输出2" onclick="consoleMsg2();" />
     <script src="debounce.js"></script>
     <script>
-        var _debounce = debounce(function(time) {
+        var _debounce1 = debounce(function(time) {
             console.log("2秒 防抖动- " + time);
-            console.log(new Date().toString());
         }, 2000);
 
-        function consoleMsg() {
-            console.log(new Date().toString());
-            _debounce(new Date().toString());
+        function consoleMsg1() {
+            _debounce1(new Date().toString());
+        }
+        var _debounce2 = debounce(function(time) {
+            console.log("3秒 防抖动- " + time);
+        }, 3000);
+
+        function consoleMsg2() {
+            _debounce2(new Date().toString());
         }
     </script>
 
