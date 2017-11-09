@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <h1>{{title}}</h1>
+        <input v-model="name ">
+        <h2>{{name}}</h2>
+        <h3>count: <span>{{count}}</span></h3>
+        <button v-on:click="clickMe">clickMe</button>
+    </div>
+
+    <script src="myvue.js"></script>
+    <script>
+        window.onload = () => {
+            new SimpleVue({
+                el: '#app',
+                data: {
+                    title: 'this is title',
+                    name: 'this is name',
+                    count: 1
+                },
+                methods: {
+                    clickMe: function() {
+                        console.log(this);
+                        this.count++;
+                    }
+                },
+                mounted: function() {
+                    window.setTimeout(() => {
+                        this.title = 'hello world';
+                    }, 1000);
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>
